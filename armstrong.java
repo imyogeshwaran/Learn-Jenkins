@@ -1,44 +1,27 @@
-class GfG {
+import java.util.Scanner;
 
-    // Function to calculate x raised to the power y
-    public static int power(int x, int y) {
-        if (y == 0)
-            return 1;
-        if (y % 2 == 0)
-            return power(x, y / 2) * power(x, y / 2);
-        return x * power(x, y / 2) * power(x, y / 2);
-    }
-
-    // Function to count number of digits
-    public static int order(int n) {
-        int t = 0;
-        while (n != 0) {
-            t++;
-            n = n / 10;
-        }
-        return t;
-    }
-
-    // Function to check whether the given number is Armstrong or not
-    public static boolean armstrong(int n) {
-        int x = order(n);
-        int temp = n, sum = 0;
-
-        while (temp != 0) {
-            int r = temp % 10;
-            sum += power(r, x);
-            temp = temp / 10;
-        }
-
-        return sum == n;
-    }
-
+public class Armstrong {
     public static void main(String[] args) {
-        int n = 153;
-        if (armstrong(n)) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
+        int number = 153; // You can change this to test
+        int originalNumber, remainder, result = 0, n = 0;
+
+        originalNumber = number;
+
+        // Find the number of digits
+        for (originalNumber = number; originalNumber != 0; originalNumber /= 10, ++n);
+
+        originalNumber = number;
+
+        // Check if it is an Armstrong number
+        while (originalNumber != 0) {
+            remainder = originalNumber % 10;
+            result += Math.pow(remainder, n);
+            originalNumber /= 10;
         }
+
+        if (result == number)
+            System.out.println(number + " is an Armstrong number.");
+        else
+            System.out.println(number + " is not an Armstrong number.");
     }
 }
